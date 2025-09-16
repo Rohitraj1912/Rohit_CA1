@@ -82,3 +82,24 @@ importances = pd.Series(best_rf.feature_importances_, index=X.columns)
 importances.nlargest(15).plot(kind='barh')
 plt.title("Top 15 Feature Importances")
 plt.show()
+
+# ------------------------------
+# 📂 SAVE PREDICTIONS TO CSV
+# ------------------------------
+
+# Create a DataFrame with actual vs predicted
+predictions_df = pd.DataFrame({
+    "Actual": y_test.values,
+    "Predicted": y_pred
+}, index=y_test.index)
+
+# Save only predictions (if you want just output)
+predictions_only = pd.DataFrame({
+    "Predicted": y_pred
+}, index=y_test.index)
+
+# Save to CSV
+predictions_df.to_csv("C:/Users/kvroh/OneDrive/Desktop/CA1_devops/data/predictions_with_actual.csv", index=False)
+predictions_only.to_csv("C:/Users/kvroh/OneDrive/Desktop/CA1_devops/data/predictions_only.csv", index=False)
+
+print("✅ Predictions saved to CSV files.")
